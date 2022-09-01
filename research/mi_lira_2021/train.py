@@ -200,9 +200,13 @@ def get_data(seed):
     else:
         print("First time, creating dataset")
         data = tfds.as_numpy(tfds.load(name=FLAGS.dataset, batch_size=-1, data_dir=DATA_DIR))
+        inputs = data['test']['image']
+        labels = data['test']['label'] 
+        inputs = (inputs/127.5)-1
+        np.save(os.path.join(FLAGS.logdir, "x_test.npy"),inputs)
+        np.save(os.path.join(FLAGS.logdir, "y_test.npy"),labels)
         inputs = data['train']['image']
         labels = data['train']['label']
-            
         inputs = (inputs/127.5)-1
         np.save(os.path.join(FLAGS.logdir, "x_train.npy"),inputs)
         np.save(os.path.join(FLAGS.logdir, "y_train.npy"),labels)
