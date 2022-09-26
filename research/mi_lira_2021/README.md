@@ -35,3 +35,14 @@ export XLA_PYTHON_CLIENT_PREALLOCATE=false
 ```
 
 # Execute code
+
+```
+bash scripts/train_large.sh
+bash scripts/all.sh
+```
+
+```
+python point_selection.py
+bash scripts/train_without_x.sh
+bash scripts/all.sh
+```
