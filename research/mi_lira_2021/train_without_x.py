@@ -236,7 +236,7 @@ def get_data(seed):
     # keep = np.ones((50_000,)).astype('bool')
     # keep[remove] = False
     
-    remove = np.load(f'/mnt/LargeDisk/Victor/targeted_point_removal/idx_to_remove_04_{(FLAGS.expid - 170) * 5:03d}.npy')
+    remove = np.load(f'/home/victor/lf2/npy/idx_to_remove_{FLAGS.run_id}_{FLAGS.model_id}_{FLAGS.num_to_remove}.npy')
     keep = np.ones((50_000,)).astype('bool')
     if remove.shape[0]:
         keep[remove] = False
@@ -347,5 +347,8 @@ if __name__ == '__main__':
     flags.DEFINE_integer('abort_after_epoch', None, 'stop trainin early at an epoch')
     flags.DEFINE_integer('save_steps', 10, 'how often to get save model.')
     flags.DEFINE_integer('patience', None, 'Early stopping after this many epochs without progress')
+    flags.DEFINE_integer('run_id', -1, 'how often to get save model.')
+    flags.DEFINE_integer('model_id', -1, 'how often to get save model.')
+    flags.DEFINE_integer('num_to_remove', -1, 'how often to get save model.')
     flags.DEFINE_bool('tunename', False, 'Use tune name?')
     app.run(main)
